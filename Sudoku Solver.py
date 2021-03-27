@@ -10,24 +10,19 @@ class SudokuSolver(object):
         
     # show board
     def __str__(self):
-        
         show_board = ""
-        
+
         for i in range(9):
-            
             row = ''
-            
+
             for j in range(9):
                 if j % 3 == 0:
                     row += " |"
-                    
                 row += (" " + str(self.board[i][j]))
-            
             show_board += (row + " |")
             
             if i == 2 or i == 5:
                 show_board += ("\n " + (len(row) + 1) * "-" + "\n")
-            
             else:
                 show_board += "\n"
                 
@@ -43,13 +38,11 @@ class SudokuSolver(object):
         # this indicates that we have gone through the whole board and is exit entry (base case).
         if not empty:
             return True
-        # otherwise unpack tuple to row and column
-        else:
+        else: # otherwise unpack tuple to row and column
             row, col = empty
         
         # if empty fill in cell and check to see if it is valid
         for val in range(1, 10):
-            
             if self.check_valid(row, col, val) == True:
                 self.board[row][col] = val
                 
@@ -73,7 +66,6 @@ class SudokuSolver(object):
             
                 # check to see if cell is empty and return position
                 if self.board[row][col] == 0:
-                    
                     return (row, col)
         
         # return this if there are no more empty cells.
@@ -106,7 +98,7 @@ class SudokuSolver(object):
         return True
             
 
-# solve a board.
+# solve a board, 0 is the empty space that needs to be solved.
 board = SudokuSolver([
     [0, 9, 4, 0, 3, 0, 1, 0, 0],
     [8, 1, 2, 7, 0, 0, 0, 9, 6],
